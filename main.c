@@ -37,9 +37,6 @@
  |           LOGGER - The logging routines.
  |           INIT - Initialyze some commonly used variables.
  */
-
-/*   Several updates made to this program are copyright 2019 by vChain Inc  */
-
 #include <stdio.h>
 FILE	*AddressFd;	/* Temporary - for DMF routine address */
 
@@ -227,7 +224,7 @@ int cc;
 	signal(SIGCLD,handle_childs);
 # endif
 #else
-	signal(SIGCLD,SIG_IGN);
+	signal(SIGCHLD,SIG_IGN);
 #endif
 
 	/* Do   kill -1 `cat /etc/huji.pid`	to raise its attention... */

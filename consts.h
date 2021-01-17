@@ -37,7 +37,11 @@ typedef unsigned short u_int16;
 typedef short int16;
 #else
 #define __U_INT32
+#ifdef __UINT32_TYPE__
+typedef unsigned int u_int32;
+#else
 typedef unsigned long u_int32;
+#endif
 typedef long int32;
 typedef unsigned short u_int16;
 typedef short int16;
@@ -53,8 +57,7 @@ unsigned long	DMF_routine_address;	/* The address of DMF framing routine */
 #endif
 
 /*   Unix specific includes   */
-#ifdef unix
-#define	UNIX
+#ifdef UNIX
 #include <stdio.h>	/* Unix standard file descriptors */
 #include <sys/types.h>
 #include <sys/stat.h>

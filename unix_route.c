@@ -17,8 +17,13 @@
 #include "bintree.h"
 
 extern int	errno;
+extern int	errno;
+#ifdef __DARWIN_UNIX03
+extern const int	sys_nerr;	/* Maximum error number recognised */
+#else
 extern int	sys_nerr;	/* Maximum error number recognised */
-extern const char *const sys_errlist[]; /* List of error messages */
+#endif
+/* extern char	*sys_errlist[];	*/ /* List of error messages */
 #define	PRINT_ERRNO	(errno > sys_nerr ? "***" : sys_errlist[errno])
 
 struct Bintree *routedb = NULL;
@@ -85,13 +90,13 @@ const int	LineSize;
 	     it now and return success */
 	  if (*DefaultRoute != '\0') {
 #ifdef DEBUG
-	    logger(4, "Using default route for '%s'\n", TempLine);
+	    logger(4, "Using default route for '%s'\n", key);
 #endif
 	    sprintf(line, "%s E", DefaultRoute);
 	    return -1;
 	  }
 #ifdef	DEBUG
-	  logger(2,"Not found a route record for key: `%s'/`%s'\n",key,TempLine);
+	  logger(2,"Not found a route record for key: `%s'/\n",key);
 #endif
 	  return 0;	/* Not found */
 	}
